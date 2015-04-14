@@ -94,10 +94,12 @@ def get_guess(possibleAnswers):
 	
 def run_game():
 	# TODO: Improve documentation
+	print "Would you like to play a game?"
 	answersToQuestions, possibleAnswers, possibleQuestions = twqs_data.load_data()
 	update_question_priorities(answersToQuestions, possibleQuestions)
 	
 	# TODO: Ensure we actually have 20 questions (not an off-by-one bug)
+	# RESOLVED: Ended range with 21 instead of 20 - DH 2015-04-13
 	for qnum in range(1,21):
 		question = choose_best_question(possibleQuestions, answersToQuestions)
 		if len(possibleAnswers) > 1:

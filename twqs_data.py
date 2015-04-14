@@ -20,17 +20,20 @@ def load_answers():
 			for line in answerfile:
 				answerList = line.strip().split(",")
 				# TODO: Check that we aren't getting multiple instances of the same item label (e.g., "cat" and "cat")
+				# Addressed by checking if the label was in possibleAnswers before continuing.  IF there are dupes, then
+				# only the first instance will be kept.
 				label = answerList[0]
-				possibleAnswers.append([1, label])
-				for item in answerList[1:]:
-					[id, val] = item.split(":")
-					if val != "n" and val != "y":
-						# TODO: Turn me into smart error handling
-						sys.exit("Error in data! Values may only be 'n' or 'y'.")
-					# TODO: Check that we aren't getting multiple conflicting answers for the same item
-					if id not in answersToQuestions:
-						answersToQuestions[id] = [];
-					answersToQuestions[id].append([val, label])
+				if not [1, label] in possibleAnswers:
+                                        possibleAnswers.append([1, label])
+                                        for item in answerList[1:]:
+                                                [id, val] = item.split(":")
+                                                if val != "n" and val != "y":
+                                                        # TODO: Turn me into smart error handling
+                                                        sys.exit("Error in data! Values may only be 'n' or 'y'.")
+                                                # TODO: Check that we aren't getting multiple conflicting answers for the same item
+                                                if id not in answersToQuestions:
+                                                        answersToQuestions[id] = [];
+                                                answersToQuestions[id].append([val, label])
 	
 	return answersToQuestions, possibleAnswers
 
