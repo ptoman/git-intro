@@ -37,8 +37,11 @@ def get_user_input(qnum, question):
 def update_answer_likelihoods(question, userYn, answersToQuestions, possibleAnswers):
 	"""Removes any answers that are impossible and updates the 
 	likelihoods of the remainder."""
+	# TODO: Don't remove impossible answers -- just decrement their likelihood (in case
+	#       the data is wrong or misleading -- quite possible)
 	# TODO: Update to use probabilistic/Bayesian updating rather than points-based updating
 	# TODO: Refactor to use more efficient data structures
+	# TODO: Improve documentation
 	qId = question[1]
 	assert qId in answersToQuestions
 	for locOfAnswer, [_, lhsJoinLabel] in enumerate(possibleAnswers):
@@ -56,7 +59,7 @@ def update_answer_likelihoods(question, userYn, answersToQuestions, possibleAnsw
 							answersToQuestions[q].remove([ans,lab])
 							
 def update_question_priorities(answersToQuestions, possibleQuestions):
-	#TODO: Reimplement to be more efficient
+	# TODO: Reimplement to be more efficient
 	mapQuestionToGoodness = {}
 	for q in answersToQuestions:
 		listForQ = answersToQuestions[q]
@@ -81,6 +84,7 @@ def update_question_priorities(answersToQuestions, possibleQuestions):
 			qItem[0] = float("inf")
 		
 def get_guess(possibleAnswers):
+	# TODO: Improve documentation
 	if len(possibleAnswers) > 0:
 		possibleAnswers.sort(key=lambda q: q[0]) 
 		return possibleAnswers.pop()
@@ -88,6 +92,7 @@ def get_guess(possibleAnswers):
 		return False
 	
 def run_game():
+	# TODO: Improve documentation
 	answersToQuestions, possibleAnswers, possibleQuestions = twqs_data.load_data()
 	update_question_priorities(answersToQuestions, possibleQuestions)
 	
@@ -112,12 +117,13 @@ def run_game():
 		
 run_game()
 
-# Nice-to-haves that could also be added in...
+# TODOs: Nice-to-haves that could also be added in...
 # -- Ability to learn new objects based on the answers given
+# -- Flag for --debug mode that prints the sorted likelihoods of each question
+#    and answer after each interaction
 # -- Ability to start a new game without restarting the application (wrapper script)
 # -- Additional script that adds ability to fill out more fields for the objects
-#    that aren't complete (and a smart script that feeds the objects & the questions in the
-#    most useful order)
-# -- Refactor so scopes are limited, there is a clearer main, etc. -- best practices
-# -- Add documentation to each function
-# -- And more
+#    that aren't complete (could augment to be smart script that feeds the objects & 
+#    the questions in the most useful order)
+# -- Refactor so scopes are limited, there is a clearer main, etc. (best practices)
+# -- Anything else you can think of
