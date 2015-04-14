@@ -97,7 +97,8 @@ def run_game():
 	update_question_priorities(answersToQuestions, possibleQuestions)
 	
 	# TODO: Ensure we actually have 20 questions (not an off-by-one bug)
-	for qnum in range(1,20):
+	# RESOLVED: Ended range with 21 instead of 20 - DH 2015-04-13
+	for qnum in range(1,21):
 		question = choose_best_question(possibleQuestions, answersToQuestions)
 		if len(possibleAnswers) > 1:
 			if question:
