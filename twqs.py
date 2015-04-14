@@ -93,6 +93,7 @@ def get_guess(possibleAnswers):
 	
 def run_game():
 	# TODO: Improve documentation
+	print "Would you like to play a game?"
 	answersToQuestions, possibleAnswers, possibleQuestions = twqs_data.load_data()
 	update_question_priorities(answersToQuestions, possibleQuestions)
 	
