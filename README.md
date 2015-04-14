@@ -6,4 +6,5 @@ We will be doing basic manipulations on this repository as part of the introduct
 # contributors
 Pam
 Izzi
+Paul
 (your name here)
