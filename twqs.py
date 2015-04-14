@@ -31,7 +31,8 @@ def get_user_input(qnum, question):
 	answer = ''
 	while answer != "y" and answer != "n":
 		answer = raw_input(str(qnum) + ") " + question[2] + " (y/n) >> ") 
-		# TODO: give user feedback if they're not giving valid inputs
+		"Come on, this is a game!" """"Gives user feedback that they're not giving valid answers"""
+
 	return answer
 
 def update_answer_likelihoods(question, userYn, answersToQuestions, possibleAnswers):
@@ -97,7 +98,7 @@ def run_game():
 	update_question_priorities(answersToQuestions, possibleQuestions)
 	
 	# TODO: Ensure we actually have 20 questions (not an off-by-one bug)
-	for qnum in range(1,20):
+	for qnum in range(1,21):
 		question = choose_best_question(possibleQuestions, answersToQuestions)
 		if len(possibleAnswers) > 1:
 			if question:
@@ -112,7 +113,7 @@ def run_game():
 	if guess:
 		print "Is it " + guess[1] + "?"
 	else:
-		print "I have no idea. You win."
+		print "I have no idea. Guessing games are hard. You win."
 
 		
 run_game()
